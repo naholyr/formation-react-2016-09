@@ -17,16 +17,27 @@ const trainees = [
   'Damien'
 ]
 
+/* stateless
+function Trainees (props) {
+  const children = props.trainees.map(name =>
+    React.createElement('li', {}, name))
+  return React.createElement('ul', {}, children)
+}
+*/
+
 class Trainees extends React.Component {
+  constructor (props) {
+    super(props)
+  }
   render () {
-    const children = trainees.map(name =>
+    const children = this.props.trainees.map(name =>
       React.createElement('li', {}, name))
     return React.createElement('ul', {}, children)
   }
 }
 
 
-var root = React.createElement(Trainees)
+var root = React.createElement(Trainees, { trainees })
 ReactDOM.render(root, document.getElementById('app'))
   </script>
 </body>
