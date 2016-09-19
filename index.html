@@ -25,13 +25,24 @@ function Trainees (props) {
 }
 */
 
+class Trainee extends React.Component {
+  render () {
+    const content = this.props.name === null
+      ? React.createElement('em', {}, 'Place vacante')
+      : React.createElement('strong', {}, this.props.name)
+
+    return React.createElement('li', {}, content)
+  }
+}
+
 class Trainees extends React.Component {
   constructor (props) {
     super(props)
   }
   render () {
     const children = this.props.trainees.map(name =>
-      React.createElement('li', {}, name))
+      React.createElement(Trainee, {name}))
+
     return React.createElement('ul', {}, children)
   }
 }
