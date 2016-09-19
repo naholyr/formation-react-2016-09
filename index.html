@@ -5,6 +5,35 @@
   <script src="./react-dom.js"></script>
 
   <script>
+
+class IncrButton extends React.Component {
+  constructor (props) {
+    super(props)
+    // this._incrémente = this.incrémente.bind(this)
+  }
+  incrémente () {
+    console.log(this)
+  }
+  render () {
+    return React.createElement('button', {
+      // onClick: this._incrémente
+      onClick: () => this.incrémente()
+    }, '1')
+  }
+}
+
+class App extends React.Component {
+  render () {
+    const { trainees } = this.props
+
+    return React.createElement('div', {},
+      React.createElement(IncrButton, {}),
+      React.createElement(Trainees, { trainees })
+    )
+  }
+}
+
+
 const trainees = [
   'Corrado',
   null,
@@ -13,7 +42,7 @@ const trainees = [
   'Abdel',
   null,
   null,
-  'Jérémie',
+  'Jérémy',
   'Damien'
 ]
 
@@ -48,7 +77,7 @@ class Trainees extends React.Component {
 }
 
 
-var root = React.createElement(Trainees, { trainees })
+var root = React.createElement(App, { trainees })
 ReactDOM.render(root, document.getElementById('app'))
   </script>
 </body>
