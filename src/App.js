@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>TodoList</h1>
-        <AddForm />
+        <AddForm onAddItem={ item => console.log(item) } />
         <TodoList />
       </div>
     );
