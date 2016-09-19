@@ -79,6 +79,10 @@ class App extends React.Component {
   }
 }
 
+App.propTypes = {
+  trainees : T.arrayOf(T.string).isRequired
+}
+
 
 const trainees = [
   'Corrado',
@@ -110,6 +114,12 @@ class Trainee extends React.Component {
   }
 }
 
+Trainee.propTypes = {
+  name: T.string
+}
+
+
+
 class Trainees extends React.Component {
   constructor (props) {
     super(props)
@@ -122,6 +132,11 @@ class Trainees extends React.Component {
     return React.createElement('ul', {}, children)
   }
 }
+
+Trainees.propTypes = {
+  trainees: T.arrayOf(T.string).isRequired
+}
+
 
 
 var root = React.createElement(App, { trainees })
