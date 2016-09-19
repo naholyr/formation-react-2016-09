@@ -2,5 +2,17 @@
   <div id="app"></div>
 
   <script src="https://cdn.jsdelivr.net/react/15.3.1/react.js"></script>
-  <script src="https://cdn.jsdelivr.net/react/15.3.1/react-dom.js"></script>
+  <script src="https://cdn.jsdelivr.net/
+  react/15.3.1/react-dom.js"></script>
+
+  <script>
+function Hello () {
+  return React.createElement('div', {className: 'hello'},
+    React.createElement('span', {}, 'Hello, '),
+    React.createElement('strong', {}, 'World'))
+}
+
+var root = React.createElement(Hello)
+ReactDOM.render(root, document.getElementById('app'))
+  </script>
 </body>
