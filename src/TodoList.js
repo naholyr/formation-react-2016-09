@@ -8,7 +8,7 @@ class TodoList extends Component {
   renderTodoItems () {
     return this.props.todos.map(item => (
       <li key={ item.id }>
-        <TodoItem { ...item } />
+        <TodoItem onRemoveItem={ this.props.onRemoveItem } { ...item } />
       </li>
     ))
   }

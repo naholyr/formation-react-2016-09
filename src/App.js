@@ -38,12 +38,18 @@ class App extends Component {
     })
   }
 
+  removeItem (id) {
+    this.setState({
+      todos: this.state.todos.filter(todo => todo.id !== id)
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <h1>TodoList</h1>
         <AddForm onAddItem={ item => this.addItem(item) } />
-        <TodoList todos={ this.state.todos } />
+        <TodoList onRemoveItem={ item => this.removeItem(item) } todos={ this.state.todos } />
       </div>
     );
   }
