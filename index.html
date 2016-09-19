@@ -28,11 +28,37 @@ class IncrButton extends React.Component {
 }
 
 class App extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      incrButtons: []
+      //nbIncrButtons: 0
+    }
+  }
+  addIncrButton () {
+    this.setState({
+      incrButtons: [
+        React.createElement(IncrButton, {
+          key: Math.random()
+        })
+      ].concat(this.state.incrButtons)
+      //nbIncrButtons: this.state.nbIncrButtons + 1
+    })
+  }
   render () {
     const { trainees } = this.props
 
+    const incrButtons = this.state.incrButtons
+    /*let incrButtons = []
+    for (let i = 0; i < this.state.nbIncrButtons; i++) {
+      incrButtons.push(React.createElement(IncrButton))
+    }*/
+
     return React.createElement('div', {},
-      React.createElement(IncrButton, {}),
+      incrButtons,
+      React.createElement('button', {
+        onClick: () => this.addIncrButton()
+      }, 'Add IncrButton'),
       React.createElement(Trainees, { trainees })
     )
   }
@@ -74,8 +100,9 @@ class Trainees extends React.Component {
     super(props)
   }
   render () {
-    const children = this.props.trainees.map(name =>
-      React.createElement(Trainee, {name}))
+    const children = this.props.trainees.map((name, key) =>
+      // TODO find a logical key
+      React.createElement(Trainee, {key, name}))
 
     return React.createElement('ul', {}, children)
   }
