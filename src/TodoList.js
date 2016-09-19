@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import TodoItem from './TodoItem';
 import uuid from 'uuid'
 
-let todos = [
+
+const todos = [
   {
     id: uuid(),
     text: 'Cultiver mon jardin',
@@ -18,12 +19,19 @@ let todos = [
     text: 'Faire la vaisselle',
     done: true
   },
-];
+]
+
 
 class TodoList extends Component {
 
+  constructor (props) {
+    super(props)
+
+    this.state = { todos }
+  }
+
   renderTodoItems () {
-    return todos.map(item => (
+    return this.state.todos.map(item => (
       <li>
         <TodoItem key={ item.id } { ...item } />
       </li>
