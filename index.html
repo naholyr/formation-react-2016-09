@@ -5,10 +5,20 @@
   <script src="https://cdn.jsdelivr.net/react/15.3.1/react-dom.js"></script>
 
   <script>
+/* Stateless:
 function Hello () {
   return React.createElement('div', {className: 'hello'},
     React.createElement('span', {}, 'Hello, '),
     React.createElement('strong', {}, 'World'))
+}
+*/
+
+class Hello extends React.Component {
+  render () {
+    return React.createElement('div', {className: 'hello'},
+      React.createElement('span', {}, 'Hello, '),
+      React.createElement('strong', {}, 'World'))
+  }
 }
 
 var root = React.createElement(Hello)
