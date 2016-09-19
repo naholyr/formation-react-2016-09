@@ -10,15 +10,20 @@ class IncrButton extends React.Component {
   constructor (props) {
     super(props)
     // this._incr = this.incr.bind(this)
+    this.state = {
+      value: 1
+    }
   }
   incr () {
-    console.log(this)
+    this.setState({
+      value: this.state.value + 1
+    })
   }
   render () {
     return React.createElement('button', {
       // onClick: this._incr
       onClick: () => this.incr()
-    }, '1')
+    }, this.state.value)
   }
 }
 
