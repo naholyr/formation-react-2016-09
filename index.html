@@ -9,13 +9,14 @@
   <script src="./react-dom.js"></script>
 
   <script>
+const T = React.PropTypes
 
 class IncrButton extends React.Component {
   constructor (props) {
     super(props)
     // this._incr = this.incr.bind(this)
     this.state = {
-      value: 1
+      value: this.props.initialValue
     }
   }
   incr () {
@@ -31,6 +32,15 @@ class IncrButton extends React.Component {
   }
 }
 
+IncrButton.defaultProps = {
+  initialValue: 1
+}
+
+IncrButton.propTypes = {
+  initialValue: T.number
+}
+
+
 class App extends React.Component {
   constructor (props) {
     super(props)
@@ -43,7 +53,8 @@ class App extends React.Component {
     this.setState({
       incrButtons: [
         React.createElement(IncrButton, {
-          key: Math.random()
+          key: Math.random(),
+          initialValue: this.state.incrButtons.length + 1
         })
       ].concat(this.state.incrButtons)
       //nbIncrButtons: this.state.nbIncrButtons + 1
