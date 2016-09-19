@@ -5,23 +5,28 @@
   <script src="./react-dom.js"></script>
 
   <script>
-/* Stateless:
-function Hello () {
-  return React.createElement('div', {className: 'hello'},
-    React.createElement('span', {}, 'Hello, '),
-    React.createElement('strong', {}, 'World'))
-}
-*/
+const trainees = [
+  'Corrado',
+  null,
+  'François',
+  null,
+  'Abdel',
+  null,
+  null,
+  'Jérémie',
+  'Damien'
+]
 
-class Hello extends React.Component {
+class Trainees extends React.Component {
   render () {
-    return React.createElement('div', {className: 'hello'},
-      React.createElement('span', {}, 'Hello, '),
-      React.createElement('strong', {}, 'World'))
+    const children = trainees.map(name =>
+      React.createElement('li', {}, name))
+    return React.createElement('ul', {}, children)
   }
 }
 
-var root = React.createElement(Hello)
+
+var root = React.createElement(Trainees)
 ReactDOM.render(root, document.getElementById('app'))
   </script>
 </body>
