@@ -4,3 +4,4 @@ All your base are belong to us
 ## Links
 
 * http://putaindecode.io/fr/evenements/2015/calendrier-avent/
+* https://github.com/reactjs/redux/issues/653
