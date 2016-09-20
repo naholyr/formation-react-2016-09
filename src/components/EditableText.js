@@ -7,8 +7,7 @@ class EditableText extends Component {
     super(props)
 
     this.state = {
-      editing: false,
-      value: this.props.defaultValue
+      editing: false
     };
   }
 
@@ -29,20 +28,18 @@ class EditableText extends Component {
   renderInput () {
     return (
       <input
-        onChange={ e => this.onChange(e) }
         onKeyPress={ e => this.onKeyPress(e) }
         defaultValue={ this.props.defaultValue } />
     );
   }
 
-  onChange (e) {
-    this.setState({ value: e.target.value });
-  }
-
   onKeyPress (e) {
     if (e.charCode === 13) {
+      // Grab value from uncontrolled input
+      const input = findDOMNode(this);
+      this.props.onChange(input.value);
+      // Switch to readonly mode
       this.setState({ editing: false });
-      this.props.onChange(this.state.value);
     }
   }
 
