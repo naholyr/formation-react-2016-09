@@ -18,3 +18,11 @@ export const add = text => ({
   }
 })
 */
+
+
+export function createReducer (initialState, reducers) {
+  return (state = initialState, { type, payload }) => {
+    const reducer = reducers[type];
+    return reducer ? reducer(state, payload) : state;
+  };
+}

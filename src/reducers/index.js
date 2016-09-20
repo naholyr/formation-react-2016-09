@@ -2,6 +2,20 @@ import { combineReducers } from 'redux';
 
 import todosReducer from './todos';
 
+/* Global App State
+
+{
+  todos: [
+    {
+      id,
+      text,
+      done
+    }
+  ],
+  // ...
+}
+*/
+
 
 combineReducers({
   todos: todosReducer,

@@ -1,18 +1,18 @@
 import { REMOVE, TOGGLE, ADD } from '../actions/todos';
 import uuid from 'uuid';
+import { createReducer } from '../helpers';
 
 
 const initialState = [ /* {id, text, done} */ ];
 
-export default function reduce (prevState = initialState, action) {
-  switch (action.type) {
+const reducers = {
 
-  case REMOVE:
-    return prevState.filter(todo => todo.id !== action.payload.id);
+  [REMOVE]: (prevState, payload) =>
+    prevState.filter(todo => todo.id !== payload.id),
 
-  case TOGGLE:
-    return prevState.map(todo => {
-      if (todo.id === action.payload.id) {
+  [TOGGLE]: (prevState, payload) =>
+    prevState.map(todo => {
+      if (todo.id === payload.id) {
         return {
           id: todo.id,
           text: todo.text,
@@ -20,17 +20,16 @@ export default function reduce (prevState = initialState, action) {
         }
       }
       return todo;
-    });
+    }),
 
-  case ADD:
-    return prevState.concat([{
+  [ADD]: (prevState, payload) =>
+    prevState.concat([{
       id: uuid(),
-      text: action.payload.text,
+      text: payload.text,
       done: false
-    }]);
+    }]),
 
-  default:
-    return prevState
-
-  }
 }
+
+
+export default createReducer(initialState, reducers);
