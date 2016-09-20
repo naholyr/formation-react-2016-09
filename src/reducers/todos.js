@@ -13,11 +13,9 @@ const reducers = {
   [TOGGLE]: (prevState, payload) =>
     prevState.map(todo => {
       if (todo.id === payload.id) {
-        return {
-          id: todo.id,
-          text: todo.text,
+        return Object.assign({}, todo, {
           done: !todo.done
-        }
+        });
       }
       return todo;
     }),
