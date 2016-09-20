@@ -5,17 +5,24 @@ import dispatcher from './my-flux/dispatcher';
 
 class TodoItem extends Component {
 
-  onClick(e) {
+  onRemove(e) {
     e.preventDefault();
     dispatcher.emit('todos:remove', this.props.item.id);
+  }
+
+  onToggle() {
+    dispatcher.emit('todos:toggle', this.props.item.id);
   }
 
   render() {
     return (
       <div>
-        <input type="checkbox" checked={this.props.item.done} />
+        <input type="checkbox"
+          checked={this.props.item.done}
+          onChange={ () => this.onToggle() } />
         <span>{this.props.item.text}</span>
-        <button onClick={ (e) => this.onClick(e)}>×</button>
+        <button
+          onClick={ (e) => this.onRemove(e)}>×</button>
       </div>
     );
   }

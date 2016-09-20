@@ -39,3 +39,18 @@ dispatcher.on('todos:remove', id => {
   todos = todos.filter(todo => todo.id !== id);
   emitter.emit('update', todos);
 })
+
+
+dispatcher.on('todos:toggle', id => {
+  todos = todos.map(todo => {
+    if (todo.id === id) {
+      return {
+        id: todo.id,
+        text: todo.text,
+        done: !todo.done
+      }
+    }
+    return todo;
+  });
+  emitter.emit('update', todos);
+});
