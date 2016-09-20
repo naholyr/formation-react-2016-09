@@ -16,7 +16,12 @@ class TodoList extends Component {
   }
 
   componentWillMount () {
-    todoStore.subscribe(todos => this.setState({ todos }));
+    this._unsubscribe = todoStore.subscribe(todos =>
+      this.setState({ todos }));
+  }
+
+  componentWillUnmount () {
+    this._unsubscribe();
   }
 
   renderTodoItems () {

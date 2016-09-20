@@ -30,6 +30,7 @@ export default {
   },
   subscribe (callback) {
     emitter.on('update', callback);
+    return () => emitter.off('update', callback);
   }
 };
 
