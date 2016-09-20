@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import dispatcher from './my-flux/dispatcher';
+import dispatcher from '../my-flux/dispatcher';
 
 
 // Controlled Input

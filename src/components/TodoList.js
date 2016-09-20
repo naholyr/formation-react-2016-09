@@ -1,8 +1,8 @@
 import React, { Component, PropTypes as T } from 'react';
 import TodoItem from './TodoItem';
-import todoStore from './my-flux/store-todos';
-import * as Types from './types';
-import connect from './my-flux/connect';
+import todoStore from '../my-flux/store-todos';
+import * as Types from '../types';
+import connect from '../my-flux/connect';
 
 
 class TodoList extends Component {

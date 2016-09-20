@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
-import * as Types from './types';
-import dispatcher from './my-flux/dispatcher';
+import * as Types from '../types';
+import dispatcher from '../my-flux/dispatcher';
 
 class TodoItem extends Component {
 
