@@ -5,3 +5,4 @@ All your base are belong to us
 
 * http://putaindecode.io/fr/evenements/2015/calendrier-avent/
 * https://github.com/reactjs/redux/issues/653
+* http://slides.com/jenyaterpil/redux-from-twitter-hype-to-production#/
