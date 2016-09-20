@@ -35,22 +35,34 @@ export default {
 };
 
 
-dispatcher.on('todos:remove', id => {
-  todos = todos.filter(todo => todo.id !== id);
-  emitter.emit('update', todos);
-})
+const reducers = {
 
+  "todos:remove": (state, id) => {
+    return state.filter(todo => todo.id !== id);
+  },
 
-dispatcher.on('todos:toggle', id => {
-  todos = todos.map(todo => {
-    if (todo.id === id) {
-      return {
-        id: todo.id,
-        text: todo.text,
-        done: !todo.done
+  "todos:toggle": (state, id) => {
+    return state.map(todo => {
+      if (todo.id === id) {
+        return {
+          id: todo.id,
+          text: todo.text,
+          done: !todo.done
+        }
       }
-    }
-    return todo;
+      return todo;
+    });
+  }
+
+}
+
+
+Object.keys(reducers).forEach(actionName => {
+  dispatcher.on(actionName, (...args) => {
+    const oldState = todos;
+    const newState = reducers[actionName](oldState, ...args);
+    todos = newState;
+    emitter.emit('update', todos);
+    console.debug('STORE UPDATE', { actionName, args, oldState, newState });
   });
-  emitter.emit('update', todos);
 });
