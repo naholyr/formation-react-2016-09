@@ -3,30 +3,32 @@ import uuid from 'uuid';
 import Jvent from 'jvent';
 
 
-let todos = [
-  {
-    id: uuid(),
-    text: 'Cultiver mon jardin',
-    done: false
-  },
-  {
-    id: uuid(),
-    text: 'Formation React',
-    done: false
-  },
-  {
-    id: uuid(),
-    text: 'Faire la vaisselle',
-    done: true
-  },
-]
+let state = {
+  todos: [
+    {
+      id: uuid(),
+      text: 'Cultiver mon jardin',
+      done: false
+    },
+    {
+      id: uuid(),
+      text: 'Formation React',
+      done: false
+    },
+    {
+      id: uuid(),
+      text: 'Faire la vaisselle',
+      done: true
+    },
+  ]
+}
 
 
 const emitter = new Jvent();
 
 export default {
   getState () {
-    return todos;
+    return state;
   },
   subscribe (callback) {
     emitter.on('update', callback);
@@ -37,11 +39,12 @@ export default {
 
 const reducers = {
 
-  "todos:remove": (state, id) =>
-    state.filter(todo => todo.id !== id),
+  "todos:remove": (state, id) => ({
+    todos: state.todos.filter(todo => todo.id !== id)
+  }),
 
-  "todos:toggle": (state, id) =>
-    state.map(todo => {
+  "todos:toggle": (state, id) => ({
+    todos: state.todos.map(todo => {
       if (todo.id === id) {
         return {
           id: todo.id,
@@ -50,24 +53,26 @@ const reducers = {
         }
       }
       return todo;
-    }),
+    })
+  }),
 
-  "todos:add": (state, text) =>
-    state.concat([{
+  "todos:add": (state, text) => ({
+    todos: state.todos.concat([{
       id: uuid(),
       text,
       done: false
-    }]),
+    }])
+  }),
 
 }
 
 
 Object.keys(reducers).forEach(actionName => {
   dispatcher.on(actionName, (...args) => {
-    const oldState = todos;
+    const oldState = state;
     const newState = reducers[actionName](oldState, ...args);
-    todos = newState;
-    emitter.emit('update', todos);
+    state = newState;
+    emitter.emit('update', state);
     console.debug('STORE UPDATE', { actionName, args, oldState, newState });
   });
 });
