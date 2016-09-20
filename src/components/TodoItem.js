@@ -9,6 +9,9 @@ class TodoItem extends Component {
 
   onRemove(e) {
     e.preventDefault();
+    // Piège: remove(this.props.item.id)
+    // → aucune erreur (ça génère juste un object)
+    // → mais ça dispatche pas grand-chose
     this.props.remove(this.props.item.id);
   }
 
