@@ -12,17 +12,11 @@ class App extends Component {
     this.state = { todos: props.todos }
   }
 
-  addItem (item) {
-    this.setState({
-      todos: this.state.todos.concat([item])
-    })
-  }
-
   render() {
     return (
       <div className="App">
         <h1>TodoList</h1>
-        <AddForm onAddItem={ item => this.addItem(item) } />
+        <AddForm />
         <TodoList />
       </div>
     );

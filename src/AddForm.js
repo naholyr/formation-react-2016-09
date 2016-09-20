@@ -1,16 +1,12 @@
-import React, { Component, PropTypes as T } from 'react';
-import uuid from 'uuid';
+import React, { Component } from 'react';
+import dispatcher from './my-flux/dispatcher';
 
 
 class AddForm extends Component {
 
   onClick (e) {
     e.preventDefault();
-    this.props.onAddItem({
-      id: uuid(),
-      text: 'Nouveau truc à faire',
-      done: false
-    });
+    dispatcher.emit('todos:add', 'Nouveau truc à faire');
   }
 
   render() {
@@ -23,9 +19,5 @@ class AddForm extends Component {
   }
 
 }
-
-AddForm.propTypes = {
-  onAddItem: T.func.isRequired
-};
 
 export default AddForm;

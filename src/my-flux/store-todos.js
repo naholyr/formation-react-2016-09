@@ -37,12 +37,11 @@ export default {
 
 const reducers = {
 
-  "todos:remove": (state, id) => {
-    return state.filter(todo => todo.id !== id);
-  },
+  "todos:remove": (state, id) =>
+    state.filter(todo => todo.id !== id),
 
-  "todos:toggle": (state, id) => {
-    return state.map(todo => {
+  "todos:toggle": (state, id) =>
+    state.map(todo => {
       if (todo.id === id) {
         return {
           id: todo.id,
@@ -51,8 +50,14 @@ const reducers = {
         }
       }
       return todo;
-    });
-  }
+    }),
+
+  "todos:add": (state, text) =>
+    state.concat([{
+      id: uuid(),
+      text,
+      done: false
+    }]),
 
 }
 
