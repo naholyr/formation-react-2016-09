@@ -1,0 +1,6 @@
+## Relay
+
+* De nombreuses requêtes vont avoir des fragments en commun
+* ``Relay`` va factoriser tout ça…
+* …produire une seule requête finale…
+* …et dispatcher les fragments aux composants
