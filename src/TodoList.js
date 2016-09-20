@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes as T } from 'react';
 import TodoItem from './TodoItem';
+import * as Types from './types';
 
 
 class TodoList extends Component {
@@ -13,7 +14,7 @@ class TodoList extends Component {
   renderTodoItems () {
     return this.props.todos.map(item => (
       <li key={ item.id }>
-        <TodoItem onRemoveItem={ this.props.onRemoveItem } { ...item } />
+        <TodoItem onRemoveItem={ this.props.onRemoveItem } item={ item } />
       </li>
     ))
   }
@@ -30,6 +31,11 @@ class TodoList extends Component {
     return nextProps.todos !== this.props.todos;
   }
 
+}
+
+TodoList.propTypes = {
+  todos: T.arrayOf(Types.TodoItem).isRequired,
+  onRemoveItem: T.func.isRequired
 }
 
 export default TodoList;

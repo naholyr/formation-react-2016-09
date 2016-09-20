@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes as T } from 'react';
 import uuid from 'uuid';
 
 
@@ -23,5 +23,9 @@ class AddForm extends Component {
   }
 
 }
+
+AddForm.propTypes = {
+  onAddItem: T.func.isRequired
+};
 
 export default AddForm;

@@ -1,27 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes as T } from 'react';
 import AddForm from './AddForm';
 import TodoList from './TodoList';
-import uuid from 'uuid';
 import './App.css';
+import * as Types from './types';
 
-
-const todos = [
-  {
-    id: uuid(),
-    text: 'Cultiver mon jardin',
-    done: false
-  },
-  {
-    id: uuid(),
-    text: 'Formation React',
-    done: false
-  },
-  {
-    id: uuid(),
-    text: 'Faire la vaisselle',
-    done: true
-  },
-]
 
 
 class App extends Component {
@@ -29,7 +11,7 @@ class App extends Component {
   constructor (props) {
     super(props)
 
-    this.state = { todos }
+    this.state = { todos: props.todos }
   }
 
   addItem (item) {
@@ -56,3 +38,11 @@ class App extends Component {
 }
 
 export default App;
+
+App.propTypes = {
+  todos : T.arrayOf(Types.TodoItem)
+}
+
+App.defaultProps = {
+  todos : []
+}
