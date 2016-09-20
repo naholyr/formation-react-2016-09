@@ -70,8 +70,8 @@ class TodoItem extends Component {
 
 TodoItem.propTypes = {
   item: Types.TodoItem.isRequired,
-  removeItem: T.func.isRequired,
-  toggleItem: T.func.isRequired,
+  remove: T.func.isRequired,
+  toggle: T.func.isRequired,
 };
 
 TodoItem.defaultProps = {
