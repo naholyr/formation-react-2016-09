@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
-import dispatcher from '../my-flux/dispatcher';
+import React, { Component, PropTypes as T } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { add } from '../actions/todos';
 
 
 // Controlled Input
@@ -14,7 +16,10 @@ class AddForm extends Component {
 
   onClick (e) {
     e.preventDefault();
-    dispatcher.emit('todos:add', this.state.text);
+    const { actions } = this.props
+
+    actions.add(this.state.text);
+
     this.setState({ text: '' });
   }
 
@@ -60,5 +65,17 @@ class AddForm extends Component {
 }
 */
 
+AddForm.propTypes = {
+  actions: T.shape({
+    add: T.func.isRequired
+  }).isRequired
+};
 
-export default AddForm;
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators({ add }, dispatch)
+  /*actions: {
+    add: text => dispatch(add(text))
+  }*/
+});
+
+export default connect(null, mapDispatchToProps)(AddForm);

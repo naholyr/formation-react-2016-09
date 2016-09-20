@@ -1,8 +1,7 @@
 import React, { Component, PropTypes as T } from 'react';
 import TodoItem from './TodoItem';
-import todoStore from '../my-flux/store-todos';
 import * as Types from '../types';
-import connect from '../my-flux/connect';
+import { connect } from 'react-redux';
 
 
 class TodoList extends Component {
@@ -29,4 +28,10 @@ TodoList.propTypes = {
   todos: T.arrayOf(Types.TodoItem).isRequired
 };
 
-export default connect(TodoList, todoStore);
+function mapStateToProps (appState) {
+  return {
+    todos: appState.todos
+  };
+}
+
+export default connect(mapStateToProps)(TodoList);

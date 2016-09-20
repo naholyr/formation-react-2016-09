@@ -1,17 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes as T } from 'react';
 import { findDOMNode } from 'react-dom';
 import * as Types from '../types';
-import dispatcher from '../my-flux/dispatcher';
+import { remove, toggle } from '../actions/todos';
+import { connect } from 'react-redux';
+
 
 class TodoItem extends Component {
 
   onRemove(e) {
     e.preventDefault();
-    dispatcher.emit('todos:remove', this.props.item.id);
+    this.props.remove(this.props.item.id);
   }
 
   onToggle() {
-    dispatcher.emit('todos:toggle', this.props.item.id);
+    this.props.toggle(this.props.item.id);
   }
 
   render() {
@@ -64,11 +66,16 @@ class TodoItem extends Component {
 }
 
 TodoItem.propTypes = {
-  item: Types.TodoItem.isRequired
+  item: Types.TodoItem.isRequired,
+  removeItem: T.func.isRequired,
+  toggleItem: T.func.isRequired,
 };
 
 TodoItem.defaultProps = {
   done: false
 };
 
-export default TodoItem;
+export default connect(null, {
+  remove,
+  toggle
+})(TodoItem);
