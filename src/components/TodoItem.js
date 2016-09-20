@@ -1,8 +1,9 @@
 import React, { Component, PropTypes as T } from 'react';
 import { findDOMNode } from 'react-dom';
 import * as Types from '../types';
-import { remove, toggle } from '../actions/todos';
+import { remove, toggle, update } from '../actions/todos';
 import { connect } from 'react-redux';
+import EditableText from './EditableText';
 
 
 class TodoItem extends Component {
@@ -25,7 +26,9 @@ class TodoItem extends Component {
         <input type="checkbox"
           checked={this.props.item.done}
           onChange={ () => this.onToggle() } />
-        <span>{this.props.item.text}</span>
+        <EditableText
+          defaultValue={ this.props.item.text }
+          onChange={ text => this.props.update(this.props.item.id, text) } />
         <button
           onClick={ (e) => this.onRemove(e)}>×</button>
       </div>
@@ -72,6 +75,7 @@ TodoItem.propTypes = {
   item: Types.TodoItem.isRequired,
   remove: T.func.isRequired,
   toggle: T.func.isRequired,
+  update: T.func.isRequired
 };
 
 TodoItem.defaultProps = {
@@ -80,5 +84,6 @@ TodoItem.defaultProps = {
 
 export default connect(null, {
   remove,
-  toggle
+  toggle,
+  update
 })(TodoItem);

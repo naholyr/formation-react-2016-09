@@ -1,4 +1,4 @@
-import { REMOVE, TOGGLE, ADD } from '../actions/todos';
+import { REMOVE, TOGGLE, ADD, UPDATE } from '../actions/todos';
 import uuid from 'uuid';
 import { createReducer } from '../helpers';
 
@@ -26,6 +26,12 @@ const reducers = {
       text: payload.text,
       done: false
     }]),
+
+  [UPDATE]: (prevState, { id, text }) =>
+    prevState.map(todo => todo.id === id
+      ? Object.assign({}, todo, { text })
+      : todo
+    ),
 
 }
 
