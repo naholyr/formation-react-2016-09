@@ -1,6 +1,6 @@
-import React, { Component, PropTypes as T } from 'react';
+import React, { Component } from 'react';
 import TodoItem from './TodoItem';
-import * as Types from './types';
+import todoStore from './my-flux/store-todos';
 
 
 class TodoList extends Component {
@@ -9,12 +9,20 @@ class TodoList extends Component {
     super(props)
 
     console.log('new TodoList')
+
+    this.state = {
+      todos: todoStore.getState()
+    }
+  }
+
+  componentWillMount () {
+    todoStore.subscribe(todos => this.setState({ todos }));
   }
 
   renderTodoItems () {
-    return this.props.todos.map(item => (
+    return this.state.todos.map(item => (
       <li key={ item.id }>
-        <TodoItem onRemoveItem={ this.props.onRemoveItem } item={ item } />
+        <TodoItem item={ item } />
       </li>
     ))
   }
@@ -27,15 +35,6 @@ class TodoList extends Component {
     );
   }
 
-  shouldComponentUpdate (nextProps, nextState) {
-    return nextProps.todos !== this.props.todos;
-  }
-
-}
-
-TodoList.propTypes = {
-  todos: T.arrayOf(Types.TodoItem).isRequired,
-  onRemoveItem: T.func.isRequired
 }
 
 export default TodoList;

@@ -1,12 +1,13 @@
-import React, { Component, PropTypes as T } from 'react';
+import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import * as Types from './types';
+import dispatcher from './my-flux/dispatcher';
 
 class TodoItem extends Component {
 
   onClick(e) {
     e.preventDefault();
-    this.props.onRemoveItem(this.props.item.id);
+    dispatcher.emit('todos:remove', this.props.item.id);
   }
 
   render() {
@@ -56,8 +57,7 @@ class TodoItem extends Component {
 }
 
 TodoItem.propTypes = {
-  item: Types.TodoItem.isRequired,
-  onRemoveItem: T.func.isRequired
+  item: Types.TodoItem.isRequired
 };
 
 TodoItem.defaultProps = {

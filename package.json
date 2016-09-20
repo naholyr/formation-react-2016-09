@@ -6,6 +6,7 @@
     "react-scripts": "0.4.3"
   },
   "dependencies": {
+    "jvent": "^1.0.0",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
     "uuid": "^2.0.3"
