@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 
 class Menu extends Component {
@@ -6,9 +7,9 @@ class Menu extends Component {
   render() {
     return (
       <ul className="Menu">
-        <li>Home</li>
-        <li>Todos</li>
-        <li>People</li>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/todos">Todos</Link></li>
+        <li><Link to="/people">People</Link></li>
       </ul>
     );
   }
