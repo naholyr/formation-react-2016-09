@@ -1,8 +1,9 @@
 import uuid from 'uuid';
 
 export const getItems = () =>
-  Promise.resolve(localStorage.getItem('todos') || '[]')
-  .then(JSON.parse);
+  new Promise(resolve => setTimeout(() => {
+    resolve(JSON.parse(localStorage.getItem('todos') || '[]'));
+  }, 1000));
 
 export const getItem = id =>
   getItems()

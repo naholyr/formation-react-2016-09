@@ -1,5 +1,4 @@
 import { REMOVE, TOGGLE, ADD, UPDATE } from '../actions/todos';
-import uuid from 'uuid';
 import { createReducer } from '../helpers';
 
 
@@ -21,11 +20,7 @@ const reducers = {
     }),
 
   [ADD]: (prevState, payload) =>
-    prevState.concat([{
-      id: uuid(),
-      text: payload.text,
-      done: false
-    }]),
+    prevState.concat([payload.item]),
 
   [UPDATE]: (prevState, { id, text }) =>
     prevState.map(todo => todo.id === id
