@@ -1,21 +1,28 @@
 import React, { Component, PropTypes as T } from 'react';
+import { connect } from 'react-redux';
 
+
+// -- component
 
 class PeopleCard extends Component {
 
   render() {
     return (
       <div className="PeopleCard">
-        User #{ this.props.params.id }
+        User #{ this.props.id }
       </div>
     );
   }
 }
 
 PeopleCard.propTypes = {
-  params: T.shape({
-    id: T.string.isRequired
-  }).isRequired
+  id: T.string.isRequired
 };
 
-export default PeopleCard;
+// -- container
+
+const mapStateToProps = (state, ownProps) => ({
+  id: ownProps.params.id
+})
+
+export default connect(mapStateToProps)(PeopleCard);

@@ -3,13 +3,13 @@ import thunkMiddleware from 'redux-thunk';
 
 import todosReducer from './reducers/todos';
 import uiReducer from './reducers/ui';
+import { routerReducer } from 'react-router-redux';
 
 export default () => createStore(
   combineReducers({
     todos: todosReducer,
-    ui: uiReducer
-    // other: otherReducer
-    // ...
+    ui: uiReducer,
+    routing: routerReducer
   }),
   compose(
     applyMiddleware(

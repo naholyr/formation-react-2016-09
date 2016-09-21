@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Route, IndexRoute } from 'react-router';
 
 import App from './components/App';
 import Home from './components/Home';
@@ -9,13 +9,11 @@ import PeopleCard from './components/PeopleCard';
 
 
 export default (
-  <Router history={ browserHistory }>
-    <Route path="/" component={ App }>
-      <IndexRoute component={ Home } />
-      <Route path="todos" component={ TodoApp } />
-      <Route path="people" component={ PeopleApp }>
-        <Route path=":id" component={ PeopleCard } />
-      </Route>
+  <Route path="/" component={ App }>
+    <IndexRoute component={ Home } />
+    <Route path="todos" component={ TodoApp } />
+    <Route path="people" component={ PeopleApp }>
+      <Route path=":id" component={ PeopleCard } />
     </Route>
-  </Router>
+  </Route>
 );
