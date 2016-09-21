@@ -12,8 +12,26 @@ export default () => createStore(
     // ...
   }),
   compose(
-    applyMiddleware(thunkMiddleware),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
+    applyMiddleware(
+      store => next => action => {
+        console.log(action);
+        next(action);
+      },
+      thunkMiddleware,
+      /* thunkMiddleware ressemble à peu près à ça
+      store => next => action => {
+        if (typeof action === 'function') {
+          action(store.dispatch)
+        } else {
+          next(action)
+        }
+      }
+      */
+
+    ),
+    window.devToolsExtension
+      ? window.devToolsExtension()
+      : f => f
   )
 );
 
