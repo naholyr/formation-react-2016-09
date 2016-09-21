@@ -1,0 +1,17 @@
+.Menu {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 0 10px;
+  list-style-type: none;
+  display: flex;
+}
+.Menu li {
+  flex: 1;
+}
+.Menu li a {
+  display: block;
+}
+.Menu li a.active {
+  font-weight: bold;
+}
