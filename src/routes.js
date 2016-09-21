@@ -6,6 +6,7 @@ import Home from './components/Home';
 import TodoApp from './components/TodoApp';
 import PeopleApp from './components/PeopleApp';
 import PeopleCard from './components/PeopleCard';
+import NotFound from './components/NotFound';
 
 
 export default (
@@ -15,5 +16,6 @@ export default (
     <Route path="people" component={ PeopleApp }>
       <Route path=":id" component={ PeopleCard } />
     </Route>
+    <Route path="*" component={ NotFound } />
   </Route>
 );
