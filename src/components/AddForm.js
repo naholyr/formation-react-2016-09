@@ -1,8 +1,7 @@
 import React, { Component, PropTypes as T } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { requestAdd, failureAdd, successAdd } from '../actions/todos';
-import { addItem } from '../todos-api';
+import { add } from '../actions/todos';
 
 
 // Controlled Input
@@ -18,11 +17,6 @@ class AddForm extends Component {
   onClick (e) {
     e.preventDefault();
     const { actions } = this.props
-
-    actions.requestAdd(this.state.text);
-    addItem(this.state.text)
-    .then(item => actions.successAdd(item))
-    .catch(error => actions.failureAdd(error));
 
     actions.add(this.state.text);
 
@@ -49,9 +43,7 @@ class AddForm extends Component {
 
 AddForm.propTypes = {
   actions: T.shape({
-    requestAdd: T.func.isRequired,
-    successAdd: T.func.isRequired,
-    failureAdd: T.func.isRequired,
+    add: T.func.isRequired
   }).isRequired,
   isLoading: T.bool
 };
@@ -65,7 +57,7 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  actions: bindActionCreators({ requestAdd, successAdd, failureAdd }, dispatch)
+  actions: bindActionCreators({ add }, dispatch)
   /*actions: {
     add: text => dispatch(add(text))
   }*/

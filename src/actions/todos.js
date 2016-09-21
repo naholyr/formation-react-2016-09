@@ -7,6 +7,7 @@ export const REMOVE = 'todos:remove'
 export const TOGGLE = 'todos:toggle'
 export const UPDATE = 'todos:update'
 
+export const add = createAction(ADD, (text) => { text });
 export const requestAdd = createAction(ADD_REQUEST, (text) => ({ text }))
 export const successAdd = createAction(ADD_SUCCESS, (item) => ({ item }))
 export const failureAdd = createAction(ADD_FAILURE, (error) => ({ error }))
