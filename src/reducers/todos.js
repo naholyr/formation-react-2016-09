@@ -1,4 +1,4 @@
-import { REMOVE, TOGGLE, ADD_SUCCESS, UPDATE } from '../actions/todos';
+import { REMOVE, TOGGLE, ADD_SUCCESS, UPDATE, LOAD_SUCCESS } from '../actions/todos';
 
 import { createReducer } from '../helpers';
 
@@ -28,6 +28,9 @@ const reducers = {
       ? Object.assign({}, todo, { text })
       : todo
     ),
+
+  [LOAD_SUCCESS]: (prevState, payload) =>
+    payload.items,
 
 }
 
