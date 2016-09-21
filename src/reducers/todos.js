@@ -1,4 +1,5 @@
-import { REMOVE, TOGGLE, ADD, UPDATE } from '../actions/todos';
+import { REMOVE, TOGGLE, ADD_SUCCESS, UPDATE } from '../actions/todos';
+
 import { createReducer } from '../helpers';
 
 
@@ -19,7 +20,7 @@ const reducers = {
       return todo;
     }),
 
-  [ADD]: (prevState, payload) =>
+  [ADD_SUCCESS]: (prevState, payload) =>
     prevState.concat([payload.item]),
 
   [UPDATE]: (prevState, { id, text }) =>
