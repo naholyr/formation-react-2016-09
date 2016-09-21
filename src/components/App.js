@@ -1,23 +1,15 @@
 import React, { Component } from 'react';
-import AddForm from './AddForm';
-import TodoList from './TodoList';
-import './App.css';
+import Menu from './Menu';
 
 
 class App extends Component {
 
-  constructor (props) {
-    super(props)
-
-    this.state = { todos: props.todos }
-  }
-
   render() {
     return (
       <div className="App">
-        <h1>TodoList</h1>
-        <AddForm />
-        <TodoList />
+        <Menu />
+        je sais pas ça dépend de ce que j'ai cliqué dans le menu
+        <footer>copyright</footer>
       </div>
     );
   }
