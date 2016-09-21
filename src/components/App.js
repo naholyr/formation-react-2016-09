@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <div className="App">
         <Menu />
-        je sais pas ça dépend de ce que j'ai cliqué dans le menu
+        { this.props.children }
         <footer>copyright</footer>
       </div>
     );

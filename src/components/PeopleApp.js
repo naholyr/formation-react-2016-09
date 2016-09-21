@@ -12,7 +12,7 @@ class PeopleApp extends Component {
           <li><a href="???">User 2</a></li>
           <li><a href="???">User 3</a></li>
         </ul>
-        { selectedUser
+        { this.props.selectedUser
           ? <PeopleCard id="???" />
           : <p>Select user to see his card</p>
         }

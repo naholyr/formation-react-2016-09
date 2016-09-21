@@ -6,10 +6,12 @@
     "react-scripts": "0.4.3"
   },
   "dependencies": {
+    "history": "^4.2.0",
     "jvent": "^1.0.0",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
     "react-redux": "^4.4.5",
+    "react-router": "^2.8.1",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
     "uuid": "^2.0.3"
