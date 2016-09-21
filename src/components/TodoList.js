@@ -16,6 +16,10 @@ class TodoList extends Component {
   }
 
   render() {
+    if (this.props.isLoading) {
+      return <p>Loading items…</p>;
+    }
+
     return (
       <ul>
         { this.renderTodoItems() }
@@ -30,12 +34,19 @@ class TodoList extends Component {
 }
 
 TodoList.propTypes = {
-  todos: T.arrayOf(Types.TodoItem).isRequired,
-  load: T.func.isRequired
+  todos: T.arrayOf(Types.TodoItem),
+  load: T.func.isRequired,
+  isLoading: T.bool
 };
+
+TodoList.defaultProps = {
+  todos: [],
+  isLoading: false
+}
 
 function mapStateToProps (appState) {
   return {
+    isLoading: appState.ui.isLoadingItems,
     todos: appState.todos
   };
 }
