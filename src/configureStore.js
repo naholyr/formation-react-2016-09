@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 
 import todosReducer from './reducers/todos';
@@ -11,7 +11,10 @@ export default () => createStore(
     // other: otherReducer
     // ...
   }),
-  applyMiddleware(thunkMiddleware)
+  compose(
+    applyMiddleware(thunkMiddleware),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+  )
 );
 
 // store.subscribe(() => updateApp(store.getState()))
